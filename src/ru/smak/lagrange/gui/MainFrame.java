@@ -103,7 +103,7 @@ public class MainFrame extends JFrame {
         });
         nmYMin.addChangeListener(e -> {
             nmYMax.setMinimum((double) nmYMin.getValue() + 0.1);
-            cPainter.getConverter().setXShape(
+            cPainter.getConverter().setYShape(
                     (double)nmYMin.getValue(),
                     (double)nmYMax.getValue()
             );
@@ -111,7 +111,7 @@ public class MainFrame extends JFrame {
         });
         nmYMax.addChangeListener(e -> {
             nmYMin.setMaximum((double) nmYMax.getValue() - 0.1);
-            cPainter.getConverter().setXShape(
+            cPainter.getConverter().setYShape(
                     (double)nmYMin.getValue(),
                     (double)nmYMax.getValue()
             );
