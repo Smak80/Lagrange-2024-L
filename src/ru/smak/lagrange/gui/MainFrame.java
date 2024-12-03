@@ -91,6 +91,7 @@ public class MainFrame extends JFrame {
                     (double)nmXMin.getValue(),
                     (double)nmXMax.getValue()
             );
+            repaint();
         });
         nmXMax.addChangeListener(e -> {
             nmXMin.setMaximum((double) nmXMax.getValue() - 0.1);
@@ -98,6 +99,7 @@ public class MainFrame extends JFrame {
                     (double)nmXMin.getValue(),
                     (double)nmXMax.getValue()
             );
+            repaint();
         });
         nmYMin.addChangeListener(e -> {
             nmYMax.setMinimum((double) nmYMin.getValue() + 0.1);
@@ -105,6 +107,7 @@ public class MainFrame extends JFrame {
                     (double)nmYMin.getValue(),
                     (double)nmYMax.getValue()
             );
+            repaint();
         });
         nmYMax.addChangeListener(e -> {
             nmYMin.setMaximum((double) nmYMax.getValue() - 0.1);
@@ -112,6 +115,7 @@ public class MainFrame extends JFrame {
                     (double)nmYMin.getValue(),
                     (double)nmYMax.getValue()
             );
+            repaint();
         });
     }
 
