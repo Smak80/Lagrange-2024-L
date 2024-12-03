@@ -81,4 +81,13 @@ public class Converter {
     public double getYDen(){
         return height / (yMax - yMin);
     }
+
+    /**
+     * Метод преобразования координаты из декартовой системы в экранную
+     * @param x декартовая система координат
+     * @return экранная система координат, соответствующая указанной декартовой координате
+     */
+    public int xCrt2Scr(double x){
+        return (int)((x - xMin) * getXDen());
+    }
 }

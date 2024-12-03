@@ -1,9 +1,14 @@
 package ru.smak.lagrange.gui;
 
+import ru.smak.lagrange.painters.CartesianPainter;
+
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class MainFrame extends JFrame {
     /**
@@ -36,6 +41,8 @@ public class MainFrame extends JFrame {
      */
     private final SpinnerNumberModel nmYMax = new SpinnerNumberModel(+5.0, -4.9, +100., 0.1);
 
+    private final CartesianPainter cPainter = new CartesianPainter();
+
     /**
      * Конструктор основного окна
      */
@@ -55,7 +62,26 @@ public class MainFrame extends JFrame {
 
         // Настройка окна для отображения заданного содержимого
         pack();
+
+//        addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                Graphics g = mainPanel.getGraphics();
+//                g.fillRect(50, 50, 300, 300);
+//            }
+//        });
     }
+
+    @Override
+    public void paint(Graphics g){
+        super.paint(g);
+        cPainter.setSize(mainPanel.getSize());
+        cPainter.paint(mainPanel.getGraphics());
+        //Graphics g = mainPanel.getGraphics();
+        //g.fillRect(50, 50, 300, 300);
+
+    }
+
 
     /**
      * Настройка границ отрезков при изменении значений в связанных спиннеров
