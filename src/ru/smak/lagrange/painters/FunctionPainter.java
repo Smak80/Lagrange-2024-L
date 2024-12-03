@@ -47,14 +47,16 @@ public class FunctionPainter implements Painter{
     @Override
     public void paint(Graphics g) {
         g.setColor(Color.RED);
-        for (int i = 0; i < width-1; i++){
-            var x1 = c.xScr2Crt(i);
-            var y1 = p.invoke(x1); // вычисление полинома в точке
-            var yS1 = c.yCrt2Scr(y1);
-            var x2 = c.xScr2Crt(i+1);
-            var y2 = p.invoke(x2);
-            var yS2 = c.yCrt2Scr(y2);
-            g.drawLine(i, yS1, i+1, yS2);
+        if (p != null) {
+            for (int i = 0; i < width - 1; i++) {
+                var x1 = c.xScr2Crt(i);
+                var y1 = p.invoke(x1); // вычисление полинома в точке
+                var yS1 = c.yCrt2Scr(y1);
+                var x2 = c.xScr2Crt(i + 1);
+                var y2 = p.invoke(x2);
+                var yS2 = c.yCrt2Scr(y2);
+                g.drawLine(i, yS1, i + 1, yS2);
+            }
         }
     }
 }

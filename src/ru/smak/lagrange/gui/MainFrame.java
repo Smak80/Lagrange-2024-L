@@ -93,14 +93,15 @@ public class MainFrame extends JFrame {
                 mainPanel.getWidth(),
                 mainPanel.getHeight()
         ));
+        fp.setFunction(poly);
 
         mainPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 points.put(
-                        cPainter.getConverter().xScr2Crt(e.getX()),
-                        cPainter.getConverter().yScr2Crt(e.getY())
+                        cp.getConverter().xScr2Crt(e.getX()),
+                        cp.getConverter().yScr2Crt(e.getY())
                 );
                 poly = new Lagrange(points);
                 repaint();
@@ -111,9 +112,10 @@ public class MainFrame extends JFrame {
     @Override
     public void paint(Graphics g){
         super.paint(g);
-        cPainter.setSize(mainPanel.getSize());
-        cPainter.paint(mainPanel.getGraphics());
-
+        for(var p: painters) {
+            p.setSize(mainPanel.getSize());
+            p.paint(mainPanel.getGraphics());
+        }
     }
 
     /**
