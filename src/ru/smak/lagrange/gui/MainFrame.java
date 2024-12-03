@@ -77,11 +77,7 @@ public class MainFrame extends JFrame {
         super.paint(g);
         cPainter.setSize(mainPanel.getSize());
         cPainter.paint(mainPanel.getGraphics());
-        //Graphics g = mainPanel.getGraphics();
-        //g.fillRect(50, 50, 300, 300);
-
     }
-
 
     /**
      * Настройка границ отрезков при изменении значений в связанных спиннеров

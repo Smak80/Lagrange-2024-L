@@ -1,11 +1,23 @@
 package ru.smak.lagrange.painters;
 
+import ru.smak.lagrange.coordinates.Converter;
+
 import java.awt.*;
 
 public class CartesianPainter implements Painter{
 
     private int width;
     private int height;
+
+    private Converter c = null;
+
+    public Converter getConverter() {
+        return c;
+    }
+
+    public void setConverter(Converter c) {
+        this.c = c;
+    }
 
     @Override
     public Dimension getSize() {
