@@ -3,6 +3,7 @@ package ru.smak.lagrange.gui;
 import math.Lagrange;
 import ru.smak.lagrange.coordinates.Converter;
 import ru.smak.lagrange.painters.CartesianPainter;
+import ru.smak.lagrange.painters.FunctionPainter;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -11,6 +12,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainFrame extends JFrame {
@@ -48,7 +50,7 @@ public class MainFrame extends JFrame {
      */
     private final SpinnerNumberModel nmYMax = new SpinnerNumberModel(+5.0, -4.9, +100., 0.1);
 
-    private final CartesianPainter cPainter = new CartesianPainter();
+    private final ArrayList<ru.smak.lagrange.painters.Painter> painters = new ArrayList<>();
 
     /**
      * Конструктор основного окна
@@ -70,7 +72,20 @@ public class MainFrame extends JFrame {
         // Настройка окна для отображения заданного содержимого
         pack();
 
-        cPainter.setConverter(new Converter(
+        var cp = new CartesianPainter();
+        var fp = new FunctionPainter();
+        painters.add(cp);
+        painters.add(fp);
+
+        cp.setConverter(new Converter(
+                (double)nmXMin.getValue(),
+                (double)nmXMax.getValue(),
+                (double)nmYMin.getValue(),
+                (double)nmYMax.getValue(),
+                mainPanel.getWidth(),
+                mainPanel.getHeight()
+        ));
+        fp.setConverter(new Converter(
                 (double)nmXMin.getValue(),
                 (double)nmXMax.getValue(),
                 (double)nmYMin.getValue(),
