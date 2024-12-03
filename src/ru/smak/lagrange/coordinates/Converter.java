@@ -88,6 +88,24 @@ public class Converter {
      * @return экранная система координат, соответствующая указанной декартовой координате
      */
     public int xCrt2Scr(double x){
-        return (int)((x - xMin) * getXDen());
+        var v = ((x - xMin) * getXDen());
+        if (v < -width) v = -width;
+        if (v > 2 * width) v = 2 * width;
+        return (int)v;
+    }
+
+    public int yCrt2Scr(double y){
+        var v = ((yMax - y) * getYDen());
+        if (v < -height) v = -height;
+        if (v > 2 * height) v = 2 * height;
+        return (int)v;
+    }
+
+    public double xScr2Crt(int x){
+        return (double)x / getXDen() + xMin;
+    }
+
+    public double yScr2Crt(int y){
+        return yMax - (double)y / getYDen();
     }
 }
