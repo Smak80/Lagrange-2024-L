@@ -17,7 +17,6 @@ import java.util.HashMap;
 
 public class MainFrame extends JFrame {
 
-    private Lagrange poly = null;
     private final HashMap<Double, Double> points = new HashMap<>();
 
     /**
@@ -50,6 +49,8 @@ public class MainFrame extends JFrame {
      */
     private final SpinnerNumberModel nmYMax = new SpinnerNumberModel(+5.0, -4.9, +100., 0.1);
 
+    private CartesianPainter cp = new CartesianPainter();
+    private FunctionPainter fp = new FunctionPainter();
     private final ArrayList<ru.smak.lagrange.painters.Painter> painters = new ArrayList<>();
 
     /**
@@ -72,8 +73,6 @@ public class MainFrame extends JFrame {
         // Настройка окна для отображения заданного содержимого
         pack();
 
-        var cp = new CartesianPainter();
-        var fp = new FunctionPainter();
         painters.add(cp);
         painters.add(fp);
 
@@ -93,7 +92,6 @@ public class MainFrame extends JFrame {
                 mainPanel.getWidth(),
                 mainPanel.getHeight()
         ));
-        fp.setFunction(poly);
 
         mainPanel.addMouseListener(new MouseAdapter() {
             @Override
@@ -103,7 +101,8 @@ public class MainFrame extends JFrame {
                         cp.getConverter().xScr2Crt(e.getX()),
                         cp.getConverter().yScr2Crt(e.getY())
                 );
-                poly = new Lagrange(points);
+                var poly = new Lagrange(points);
+                fp.setFunction(poly);
                 repaint();
             }
         });
@@ -124,7 +123,7 @@ public class MainFrame extends JFrame {
     private void setSpinnersBehaviour() {
         nmXMin.addChangeListener(e -> {
             nmXMax.setMinimum((double) nmXMin.getValue() + 0.1);
-            cPainter.getConverter().setXShape(
+            cp.getConverter().setXShape(
                     (double)nmXMin.getValue(),
                     (double)nmXMax.getValue()
             );
@@ -132,7 +131,7 @@ public class MainFrame extends JFrame {
         });
         nmXMax.addChangeListener(e -> {
             nmXMin.setMaximum((double) nmXMax.getValue() - 0.1);
-            cPainter.getConverter().setXShape(
+            cp.getConverter().setXShape(
                     (double)nmXMin.getValue(),
                     (double)nmXMax.getValue()
             );
@@ -140,7 +139,7 @@ public class MainFrame extends JFrame {
         });
         nmYMin.addChangeListener(e -> {
             nmYMax.setMinimum((double) nmYMin.getValue() + 0.1);
-            cPainter.getConverter().setYShape(
+            cp.getConverter().setYShape(
                     (double)nmYMin.getValue(),
                     (double)nmYMax.getValue()
             );
@@ -148,7 +147,7 @@ public class MainFrame extends JFrame {
         });
         nmYMax.addChangeListener(e -> {
             nmYMin.setMaximum((double) nmYMax.getValue() - 0.1);
-            cPainter.getConverter().setYShape(
+            cp.getConverter().setYShape(
                     (double)nmYMin.getValue(),
                     (double)nmYMax.getValue()
             );
