@@ -85,10 +85,34 @@ public class MainFrame extends JFrame {
      * Настройка границ отрезков при изменении значений в связанных спиннеров
      */
     private void setSpinnersBehaviour() {
-        nmXMin.addChangeListener(e -> nmXMax.setMinimum((double) nmXMin.getValue() + 0.1));
-        nmXMax.addChangeListener(e -> nmXMin.setMaximum((double) nmXMax.getValue() - 0.1));
-        nmYMin.addChangeListener(e -> nmYMax.setMinimum((double) nmYMin.getValue() + 0.1));
-        nmYMax.addChangeListener(e -> nmYMin.setMaximum((double) nmYMax.getValue() - 0.1));
+        nmXMin.addChangeListener(e -> {
+            nmXMax.setMinimum((double) nmXMin.getValue() + 0.1);
+            cPainter.getConverter().setXShape(
+                    (double)nmXMin.getValue(),
+                    (double)nmXMax.getValue()
+            );
+        });
+        nmXMax.addChangeListener(e -> {
+            nmXMin.setMaximum((double) nmXMax.getValue() - 0.1);
+            cPainter.getConverter().setXShape(
+                    (double)nmXMin.getValue(),
+                    (double)nmXMax.getValue()
+            );
+        });
+        nmYMin.addChangeListener(e -> {
+            nmYMax.setMinimum((double) nmYMin.getValue() + 0.1);
+            cPainter.getConverter().setXShape(
+                    (double)nmYMin.getValue(),
+                    (double)nmYMax.getValue()
+            );
+        });
+        nmYMax.addChangeListener(e -> {
+            nmYMin.setMaximum((double) nmYMax.getValue() - 0.1);
+            cPainter.getConverter().setXShape(
+                    (double)nmYMin.getValue(),
+                    (double)nmYMax.getValue()
+            );
+        });
     }
 
     /**
