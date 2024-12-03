@@ -88,6 +88,7 @@ public class MainFrame extends JFrame {
                         cPainter.getConverter().yScr2Crt(e.getY())
                 );
                 poly = new Lagrange(points);
+                repaint();
             }
         });
     }
@@ -97,6 +98,7 @@ public class MainFrame extends JFrame {
         super.paint(g);
         cPainter.setSize(mainPanel.getSize());
         cPainter.paint(mainPanel.getGraphics());
+
     }
 
     /**
