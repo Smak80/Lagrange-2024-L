@@ -38,7 +38,7 @@ public class CartesianPainter implements Painter{
     @Override
     public void paint(Graphics g) {
         g.setColor(Color.BLUE);
-        g.drawLine(0, height/2, width, height/2);
-        g.drawLine(width/2, 0, width/2, height);
+        g.drawLine(0, c.yCrt2Scr(0.0), width, c.yCrt2Scr(0.0));
+        g.drawLine(c.xCrt2Scr(0.0), 0, c.xCrt2Scr(0.0), height);
     }
 }
