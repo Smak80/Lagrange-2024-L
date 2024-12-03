@@ -1,5 +1,6 @@
 package ru.smak.lagrange.gui;
 
+import math.Lagrange;
 import ru.smak.lagrange.coordinates.Converter;
 import ru.smak.lagrange.painters.CartesianPainter;
 
@@ -10,8 +11,13 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.HashMap;
 
 public class MainFrame extends JFrame {
+
+    private Lagrange poly = null;
+    private final HashMap<Double, Double> points = new HashMap<>();
+
     /**
      * Основная панель для отображения декартовой плоскости
      */
@@ -72,6 +78,15 @@ public class MainFrame extends JFrame {
                 mainPanel.getWidth(),
                 mainPanel.getHeight()
         ));
+
+        mainPanel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+
+                poly.
+            }
+        });
     }
 
     @Override
