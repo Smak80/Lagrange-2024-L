@@ -1,5 +1,6 @@
 package ru.smak.lagrange.gui;
 
+import ru.smak.lagrange.coordinates.Converter;
 import ru.smak.lagrange.painters.CartesianPainter;
 
 import javax.swing.*;
@@ -63,13 +64,14 @@ public class MainFrame extends JFrame {
         // Настройка окна для отображения заданного содержимого
         pack();
 
-//        addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                Graphics g = mainPanel.getGraphics();
-//                g.fillRect(50, 50, 300, 300);
-//            }
-//        });
+        cPainter.setConverter(new Converter(
+                (double)nmXMin.getValue(),
+                (double)nmXMax.getValue(),
+                (double)nmYMin.getValue(),
+                (double)nmYMax.getValue(),
+                mainPanel.getWidth(),
+                mainPanel.getHeight()
+        ));
     }
 
     @Override
