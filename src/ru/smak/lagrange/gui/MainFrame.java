@@ -11,7 +11,6 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -49,8 +48,8 @@ public class MainFrame extends JFrame {
      */
     private final SpinnerNumberModel nmYMax = new SpinnerNumberModel(+5.0, -4.9, +100., 0.1);
 
-    private CartesianPainter cp = new CartesianPainter();
-    private FunctionPainter fp = new FunctionPainter();
+    private final CartesianPainter cp = new CartesianPainter();
+    private final FunctionPainter fp = new FunctionPainter();
     private final ArrayList<ru.smak.lagrange.painters.Painter> painters = new ArrayList<>();
 
     /**
@@ -76,22 +75,17 @@ public class MainFrame extends JFrame {
         painters.add(cp);
         painters.add(fp);
 
-        cp.setConverter(new Converter(
+        var cnv = new Converter(
                 (double)nmXMin.getValue(),
                 (double)nmXMax.getValue(),
                 (double)nmYMin.getValue(),
                 (double)nmYMax.getValue(),
                 mainPanel.getWidth(),
                 mainPanel.getHeight()
-        ));
-        fp.setConverter(new Converter(
-                (double)nmXMin.getValue(),
-                (double)nmXMax.getValue(),
-                (double)nmYMin.getValue(),
-                (double)nmYMax.getValue(),
-                mainPanel.getWidth(),
-                mainPanel.getHeight()
-        ));
+        );
+
+        cp.setConverter(cnv);
+        fp.setConverter(cnv);
 
         mainPanel.addMouseListener(new MouseAdapter() {
             @Override
