@@ -83,8 +83,11 @@ public class MainFrame extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-
-                poly.
+                points.put(
+                        cPainter.getConverter().xScr2Crt(e.getX()),
+                        cPainter.getConverter().yScr2Crt(e.getY())
+                );
+                poly = new Lagrange(points);
             }
         });
     }
